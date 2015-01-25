@@ -1,17 +1,18 @@
-ympd
+ympd - youtube fork
 ====
 
-Standalone MPD Web GUI written in C, utilizing Websockets and Bootstrap/JS
+Fork of the standalone MPD Web GUI written in C, utilizing Websockets and Bootstrap/JS. Youtube extension allows to play music from youtube links and store it into the MPD database (see the -m flag). 
 
 
 http://www.ympd.org
 
-![ScreenShot](http://www.ympd.org/assets/ympd_github.png)
+![ScreenShot](http://i59.tinypic.com/4ghhyo.png)
 
 Dependencies
 ------------
  - libmpdclient 2: http://www.musicpd.org/libs/libmpdclient/
  - cmake 2.6: http://cmake.org/
+ - youtube-dl: http://youtube-dl.org/
 
 Unix Build Instructions
 -----------------------
@@ -32,6 +33,7 @@ Usage: ./ympd [OPTION]...
  -w, --webport [ip:]<port>  listen interface/port for webserver [8080]
  -u, --user <username>      drop priviliges to user after socket bind
  -V, --version              get version
+ -m  --musicpath            set music path, required for downloading
  --help                     this help
 ```
 
