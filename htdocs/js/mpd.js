@@ -105,6 +105,12 @@ $(document).ready(function(){
             socket.send("MPD_API_SET_SEEK,"+current_song.currentSongId+","+seekVal);
         }
     });
+    $("#downloadbtn").click(function() {
+		if ($("#downloadurl").val()){
+			$('#downloadbtn').button('loading');
+			socket.send("MPD_DOWNLOAD,"+ $("#downloadurl").val());
+		}
+	});
 
     if(!notificationsSupported())
         $('#btnnotify').addClass("disabled");
@@ -366,6 +372,27 @@ function webSocketConnect() {
                         }).show();
                         
                     break;
+                case "download":
+					if (obj.data == "complete"){
+							$('.top-right').notify({
+								message:{text:"Download complete "},
+								type: "success"
+							}).show();
+					}
+					else if (obj.data == "failure"){
+						$('.top-right').notify({
+								message:{text:"Download failed "},
+								type: "danger"
+							}).show();
+					}
+					else if (obj.data == "nodir"){
+						$('.top-right').notify({
+								message:{text:"Music directory not set. Please run Ympd with -m option "},
+								type: "danger"
+							}).show();
+					}
+					$('#downloadbtn').button('reset');
+					break;
                 case "mpdhost":
                     $('#mpdhost').val(obj.data.host);
                     $('#mpdport').val(obj.data.port);

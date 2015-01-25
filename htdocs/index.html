@@ -38,9 +38,12 @@
       <div class="collapse navbar-collapse">
 
         <ul id="nav_links" class="nav navbar-nav">
-          <li id="queue"><a href="#/">Queue</a></li>
-          <li id="browse"><a href="#/browse/0/">Browse database</a></li>
-          <li><a href="#" data-toggle="modal" data-target="#settings" onclick="getHost();">Settings</a></li>
+			<li id="queue"><a href="#/">
+				<span class="glyphicon glyphicon-music"></span></a></li>
+            <li id="browse"><a href="#/browse/0/">
+				<span class="glyphicon glyphicon-folder-open"></span></a></li>
+            <li><a href="#" data-toggle="modal" data-target="#settings" onclick="getHost();">
+				<span class="glyphicon glyphicon-cog"></span></a></li>
         </ul>
 
         <div class="btn-toolbar navbar-btn navbar-right" role="toolbar">
@@ -70,6 +73,16 @@
             <input type="text" class="form-control" placeholder="Search">
           </div>
         </form>
+
+		<form id="search" class="navbar-form navbar-left" role="search">
+        <div class="input-group">
+			<input type="text" class="form-control" id="downloadurl" placeholder="URL...">
+			<span class="input-group-btn">
+			<button class="btn btn-default" id="downloadbtn" data-loading-text="Wait..." type="button">Get</button>
+			</span>
+		</div><!-- /input-group -->
+		</form>
+
       </div><!--/.nav-collapse -->
     </div>
   </div>
@@ -151,7 +164,6 @@
   	      <div id="btn-responsive-block" class="btn-group-vertical btn-block btn-group-lg" data-toggle="buttons">
   	        <button type="button" class="btn btn-default" id="btnnotify">
   		     <span class="glyphicon glyphicon-comment"></span> Notifications
-  	        </button>
   	      </div>
         </div>
       </div><!-- /.col-md-2 -->

@@ -86,11 +86,13 @@ int main(int argc, char **argv)
         {"webport",      required_argument, 0, 'w'},
         {"user",         required_argument, 0, 'u'},
         {"version",      no_argument,       0, 'v'},
+        {"musicpath",      required_argument, 0, 'm'},
         {"help",         no_argument,       0,  0 },
         {0,              0,                 0,  0 }
     };
 
-    while((n = getopt_long(argc, argv, "h:p:w:u:v",
+
+    while((n = getopt_long(argc, argv, "h:p:w:u:v:m:",
                 long_options, &option_index)) != -1) {
         switch (n) {
             case 'h':
@@ -112,6 +114,9 @@ int main(int argc, char **argv)
                         YMPD_VERSION_MAJOR, YMPD_VERSION_MINOR, YMPD_VERSION_PATCH);
                 return EXIT_SUCCESS;
                 break;
+            case 'm':
+				 mpd.music_path = strdup(optarg);
+            break;
             default:
                 fprintf(stderr, "Usage: %s [OPTION]...\n\n"
                         " -h, --host <host>\t\tconnect to mpd at host [localhost]\n"
@@ -119,6 +124,7 @@ int main(int argc, char **argv)
                         " -w, --webport [ip:]<port>\tlisten interface/port for webserver [8080]\n"
                         " -u, --user <username>\t\tdrop priviliges to user after socket bind\n"
                         " -V, --version\t\t\tget version\n"
+                        " -m, --musicpath <path>\t\tset music path, required for downloading\n"
                         " --help\t\t\t\tthis help\n"
                         , argv[0]);
                 return EXIT_FAILURE;
